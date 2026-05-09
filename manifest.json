@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub 中文增强",
+  "version": "0.2.0",
+  "description": "把 GitHub 常见界面翻成更自然的程序员中文，并兼容动态加载页面。",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://github.com/*"
+  ],
+  "action": {
+    "default_title": "GitHub 中文增强",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png",
+      "48": "assets/icons/icon48.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "src/translations.js",
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
