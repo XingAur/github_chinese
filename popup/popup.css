@@ -15,6 +15,13 @@ h1 {
   font-size: 18px;
 }
 
+.version {
+  font-size: 12px;
+  font-weight: 400;
+  color: #9fb0c3;
+  vertical-align: middle;
+}
+
 .desc,
 .hint,
 .status {

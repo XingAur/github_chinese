@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Notifications</title>
+</head>
+<body>
+  <header class="Header">
+    <nav aria-label="global"><a href="#">Issues</a><a href="#">Pull requests</a></nav>
+  </header>
+  <main>
+    <nav class="UnderlineNav">
+      <a href="#" class="selected">Inbox</a>
+      <a href="#">Done</a>
+    </nav>
+    <div class="Box">
+      <div class="Box-header">
+        <button type="button">Mark as done</button>
+        <span>Sort by:</span>
+        <span>Newest to oldest</span>
+        <span>Filters</span>
+      </div>
+      <div class="Box-body">
+        <div class="notifications-list">
+          <div class="notifications-list-item">
+            <span>assigned</span>
+            <a href="#">Fix login flow</a>
+            <span>subscribed</span>
+          </div>
+          <div class="notifications-list-item">
+            <span>review requested</span>
+            <a href="#">Update dependencies</a>
+            <span>mention</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dynamic-filter"></div>
+  </main>
+  <script>
+    // 动态插入的筛选标签,验证增量翻译
+    setTimeout(function () {
+      var el = document.createElement("span");
+      el.textContent = "Suggested filters";
+      document.getElementById("dynamic-filter").appendChild(el);
+    }, 500);
+  </script>
+</body>
+</html>

@@ -1,10 +1,16 @@
 param(
-  [string]$Version = "0.2.0"
+    # When omitted, the version is read from manifest.json
+    [string]$Version = ""
 )
 
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
+$manifest = Get-Content (Join-Path $root "manifest.json") -Raw -Encoding UTF8 | ConvertFrom-Json
+if (-not $Version) {
+    $Version = $manifest.version
+}
+
 $dist = Join-Path $root "dist"
 $packageName = "github-cn-enhancer-$Version"
 $tempDir = Join-Path $dist $packageName

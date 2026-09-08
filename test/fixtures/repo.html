@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Issues · XingAur/github_chinese</title>
+</head>
+<body>
+  <header class="Header">
+    <nav aria-label="global">
+      <a href="#">Pull requests</a>
+      <a href="#">Issues</a>
+      <a href="#">Marketplace</a>
+      <a href="#">Explore</a>
+    </nav>
+    <input type="text" placeholder="Search or jump to..." aria-label="Search or jump to...">
+  </header>
+  <main>
+    <nav class="UnderlineNav">
+      <a href="#">Code</a>
+      <a href="#">Issues</a>
+      <a href="#">Pull requests</a>
+      <a href="#">Actions</a>
+      <a href="#">Projects</a>
+      <a href="#">Wiki</a>
+      <a href="#">Security</a>
+      <a href="#">Insights</a>
+    </nav>
+    <h1>github_chinese</h1>
+    <div class="d-flex">
+      <button type="button">Fork</button>
+      <button type="button">Star</button>
+      <span class="Counter">42 commits</span>
+      <span>Forked from maboloshi/github-chinese</span>
+      <relative-time datetime="2026-09-05T00:00:00Z">3 days ago</relative-time>
+      <time-ago datetime="2026-09-07T00:00:00Z">about 18 hours ago</time-ago>
+    </div>
+    <pre><code>npm install github-chinese-enhancer
+echo "Keep me in English"</code></pre>
+    <div class="markdown-body"><p>This README content should stay in English because it is user content.</p></div>
+    <div class="comment-body"><p>Comment body stays English too.</p></div>
+    <div id="dynamic-zone"></div>
+    <button id="spa-btn" type="button">Open issue view</button>
+    <button id="menu-btn" type="button">Open user menu</button>
+  </main>
+  <script>
+    // 500ms 后动态插入节点：验证 MutationObserver 增量翻译
+    setTimeout(function () {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = "Create pull request";
+      document.getElementById("dynamic-zone").appendChild(btn);
+    }, 500);
+    // 模拟 GitHub 新版头部：用户菜单渲染进挂在 body 之外的 React portal
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      var portal = document.createElement("div");
+      portal.id = "__primerPortalRoot__";
+      portal.innerHTML =
+        '<div class="dropdown-menu" role="menu">' +
+        '<a role="menuitem" href="#">Stars</a>' +
+        '<a role="menuitem" href="#">Gists</a>' +
+        '<a role="menuitem" href="#">Organizations</a>' +
+        '<a role="menuitem" href="#">Copilot settings</a>' +
+        '<a role="menuitem" href="#">Settings</a>' +
+        '<a role="menuitem" href="#">Sign out</a>' +
+        "</div>";
+      document.documentElement.appendChild(portal);
+    });
+    // 站内 SPA 跳转：验证 history hook + 全量重扫
+    document.getElementById("spa-btn").addEventListener("click", function () {
+      history.pushState({}, "", "/XingAur/github_chinese/issues/1");
+      document.querySelector("main").innerHTML =
+        '<div class="Box-header">New issue</div><span>No milestone</span><button type="button">Close issue</button>';
+      document.title = "New issue · XingAur/github_chinese";
+    });
+  </script>
+</body>
+</html>

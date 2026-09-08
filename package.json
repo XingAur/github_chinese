@@ -1,0 +1,14 @@
+{
+  "name": "github-chinese-enhancer",
+  "private": true,
+  "version": "0.3.0",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-dictionary.mjs",
+    "test:e2e": "playwright test",
+    "test": "npm run check && playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

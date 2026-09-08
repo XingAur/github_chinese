@@ -3,6 +3,13 @@ const STORAGE_KEY = "github-cn-enabled";
 const enabledInput = document.getElementById("enabled");
 const translateNowButton = document.getElementById("translate-now");
 const statusText = document.getElementById("status");
+const versionText = document.getElementById("version");
+
+versionText.textContent = `v${chrome.runtime.getManifest().version}`;
+
+function isSupportedPage(url) {
+  return url?.startsWith("https://github.com/") || url?.startsWith("https://gist.github.com/");
+}
 
 function setStatus(text) {
   statusText.textContent = text;
@@ -17,7 +24,7 @@ function withActiveTab(callback) {
 
 function translateCurrentTab() {
   withActiveTab((tab) => {
-    if (!tab?.id || !tab.url?.startsWith("https://github.com/")) {
+    if (!tab?.id || !isSupportedPage(tab.url)) {
       setStatus("当前标签页不是 GitHub 页面。");
       return;
     }

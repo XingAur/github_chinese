@@ -11,7 +11,10 @@
 - 覆盖 Issue、Pull Request、Review、分支、标签、Release、讨论区等开发流程
 - 覆盖 Settings 页面的大量菜单和说明文字，包括权限、安全、Actions、Pages、Webhook、Secrets、Variables、Danger Zone 等
 - 覆盖 Actions 工作流页面的运行记录、Job、Step、Runner、缓存、产物、部署审批等界面
+- 时间戳自动本地化：`3 days ago`、`about 1 hour ago` 等相对时间直接显示为中文（借助 GitHub 自带时间组件的多语言能力，不靠词库硬翻）
+- 支持 Gist（`gist.github.com`）页面
 - 支持 GitHub 动态加载页面和站内无刷新跳转
+- 增量翻译：DOM 变化只处理变更子树，动态页面也保持流畅
 - 提供弹窗开关，可随时启用、停用或手动重新翻译当前页
 - 使用程序员习惯表达，例如“发起 PR”“提交改动”“审查”“同步 Fork”“部署密钥”
 
@@ -35,10 +38,10 @@ Firefox 暂未作为主要目标测试。
    - Edge：`edge://extensions`
 3. 打开右上角的“开发者模式”。
 4. 点击“加载已解压的扩展程序”。
-5. 选择本项目根目录：
+5. 选择本项目根目录（即包含 `manifest.json` 的目录），例如：
 
 ```text
-D:\TraeCode\github汉化
+D:\Code\github_chinese
 ```
 
 6. 打开或刷新 `https://github.com/` 页面，插件会自动开始汉化。
@@ -50,14 +53,14 @@ D:\TraeCode\github汉化
 1. 执行打包命令：
 
 ```powershell
-cd D:\TraeCode\github汉化
+cd D:\Code\github_chinese
 .\scripts\package.ps1
 ```
 
 2. 打包完成后会生成：
 
 ```text
-dist\github-cn-enhancer-0.2.0.zip
+dist\github-cn-enhancer-0.3.0.zip
 ```
 
 3. 将 ZIP 解压到一个固定目录。
@@ -126,15 +129,30 @@ Actions 页面会优先翻译界面层文本，不翻译日志和 YAML 内容。
 ├─ manifest.json             扩展配置，Manifest V3
 ├─ src/
 │  ├─ translations.js         汉化词典和正则规则
-│  └─ content.js              页面翻译、动态监听、跳转处理
+│  └─ content.js              页面翻译、增量监听、时间本地化、跳转处理
 ├─ popup/
 │  ├─ popup.html              插件弹窗页面
 │  ├─ popup.css               弹窗样式
 │  └─ popup.js                弹窗开关和手动翻译逻辑
 ├─ assets/icons/              扩展图标
-├─ scripts/package.ps1        打包脚本
+├─ scripts/
+│  ├─ package.ps1             打包脚本
+│  ├─ check-dictionary.mjs    词典完整性检查（无重复键）
+│  └─ dedupe-dictionary.mjs   词典去重工具（带求值对比保护）
+├─ test/                      Playwright E2E 测试
 ├─ dist/                      打包输出目录
 └─ CHANGELOG.md               更新记录
+```
+
+## 开发与测试
+
+```bash
+# 词典完整性检查（无重复键、结构可求值）
+node scripts/check-dictionary.mjs
+
+# 安装测试依赖并运行 E2E（Playwright + 真实 Chromium，本地 mock GitHub 页面）
+npm install
+npm test
 ```
 
 ## 修改汉化词库
@@ -170,7 +188,7 @@ src\translations.js
 
 ## 打包发布
 
-默认打包版本为 `0.2.0`：
+默认打包版本与 `manifest.json` 一致（当前 `0.3.0`）：
 
 ```powershell
 .\scripts\package.ps1
@@ -179,7 +197,7 @@ src\translations.js
 指定版本：
 
 ```powershell
-.\scripts\package.ps1 -Version 0.2.1
+.\scripts\package.ps1 -Version 0.3.1
 ```
 
 输出文件位于：
