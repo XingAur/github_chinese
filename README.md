@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo/banner-1280x640.png" width="800" alt="GitHub 中文增强">
+</p>
+
 # GitHub 中文增强 GitHub Chinese
 
 一个开源的 GitHub 界面汉化浏览器扩展（Chrome / Edge，Manifest V3）：把 GitHub 的导航、按钮、设置页、Issue、Pull Request、Actions 等界面文案翻译成程序员习惯的中文，同时刻意保留 PR、Issue、Fork、Star、Runner、Token、Webhook 等术语，并且**绝不翻译代码、日志和文档正文**。
@@ -135,8 +139,12 @@ npm test
 │  ├─ translations.js         汉化词典和正则规则（3300+ 词条）
 │  └─ content.js              翻译引擎：增量监听、时间本地化、浮层 portal、跳转处理
 ├─ popup/                     弹窗（开关 + 手动重译 + 版本显示）
+├─ assets/
+│  ├─ icons/                  扩展图标（像素猫 + 汉化旗）
+│  └─ logo/                   项目视觉物料（README 头图 / 商店图标，由脚本生成）
 ├─ scripts/
 │  ├─ package.ps1             打包脚本
+│  ├─ gen-logo.mjs            视觉物料生成（SVG → Playwright 截图）
 │  ├─ check-dictionary.mjs    词典完整性检查（无重复键守护）
 │  └─ dedupe-dictionary.mjs   词典去重工具（带求值对比保护）
 ├─ test/                      Playwright E2E（fixtures 为本地 mock GitHub 页面）
