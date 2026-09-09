@@ -148,7 +148,7 @@ test("弹窗：版本显示与汉化开关全链路", async ({ context }) => {
 
   const popup = await context.newPage();
   await popup.goto(`chrome-extension://${extensionId}/popup/popup.html`);
-  await expect(popup.locator("#version")).toHaveText("v0.3.0");
+  await expect(popup.locator("#version")).toHaveText("v0.3.1");
 
   // 关闭汉化：观察器断开，之后插入的节点保持英文
   await popup.locator("#enabled").uncheck();

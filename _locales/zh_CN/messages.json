@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "GitHub 中文增强"
+  },
+  "extensionDescription": {
+    "message": "把 GitHub 常见界面翻成更自然的程序员中文，时间戳自动本地化，并兼容动态加载页面。"
+  },
+  "actionTitle": {
+    "message": "GitHub 中文增强"
+  }
+}

@@ -2,6 +2,13 @@
 
 本文件记录每个版本的变更。格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循语义化版本。
 
+## [0.3.1] - 2026-09-08
+
+### 新增
+
+- 国际化声明：`manifest.json` 的名称/描述改用 `__MSG_...__` 占位符并声明 `default_locale: zh_CN`，新增 `_locales/zh_CN` 中文语言包（本扩展面向中文用户，仅声明中文一种语言；任何浏览器语言下均显示中文）。Edge Partner Center / Chrome Web Store 可据此正确识别"支持的语言"（不再只显示单个 English 条目）
+- 打包脚本将 `_locales` 一并打入安装包
+
 ## [0.3.0] - 2026-09-08
 
 ### 新增

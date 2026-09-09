@@ -29,6 +29,7 @@ New-Item -ItemType Directory -Force $tempDir | Out-Null
 
 $include = @(
   "manifest.json",
+  "_locales",
   "README.md",
   "CHANGELOG.md",
   "src",

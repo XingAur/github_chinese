@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "GitHub 中文增强",
-  "version": "0.3.0",
-  "description": "把 GitHub 常见界面翻成更自然的程序员中文，时间戳自动本地化，并兼容动态加载页面。",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "zh_CN",
+  "version": "0.3.1",
   "icons": {
     "16": "assets/icons/icon16.png",
     "32": "assets/icons/icon32.png",
@@ -18,7 +19,7 @@
     "https://gist.github.com/*"
   ],
   "action": {
-    "default_title": "GitHub 中文增强",
+    "default_title": "__MSG_actionTitle__",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "assets/icons/icon16.png",
